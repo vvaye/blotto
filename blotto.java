@@ -1,11 +1,14 @@
+// package name should be unique, something like com.vivian.blotto
 package main;
 import java.util.*;
 
+// class name should be up case
 public class blotto {
     public static void main(String[] args) {
         System.out.println(findAnswer(8) + " total");
     }
 
+    // is below comment still accurate?
     //generate dividing 50 people into 5 teams
     public static int findAnswer(int total) {
         int people = total;
@@ -13,6 +16,7 @@ public class blotto {
         String[][] finalScores = new String[2][92378];
         String[][] top5 = new String[2][5];
         for (int i = 0; i <= total; i++) {
+            // team1 can be declared out of the for loop
             int[] team1 = new int[10];
             team1[0] = i;
             total = total- i;
@@ -42,6 +46,11 @@ public class blotto {
                                             total = total - q;
                                             //code specifically for the last tower in the array
                                             team1[9] = total;
+                                            // building string is very slow, should not build a string
+                                            // instead use the counter(index) to remember the result (int)
+                                            // so structure to store the score would be int[] scores[], with counter being the array index
+                                            // after scroes[] is collected, loop through the scores to pick the top 5/10 indexes
+                                            // then go through the same code again to print out the string/team setup for the top indexes
                                             String first = new String("Team: [");
                                             for (int r = 0; r < 10; r++) {
                                                 if (r == 9) {
@@ -92,6 +101,7 @@ public class blotto {
         return counter;
     }
 
+    // should be called getScore and return int, avoid double for performance reason
     public static double getTeam(int total, int[] team1) {
         int counter = 0;
         double team1Score = 0;
@@ -125,6 +135,7 @@ public class blotto {
                                             total = total - q;
                                             //code specifically for the last tower in the array
                                             team2[9] = total;
+                                            // comment out the string since it is not printed?
                                             String second = new String("\nTeam 2 is: [");
                                             for (int r = 0; r < 10; r++) {
                                                 if (r == 9) {
@@ -147,6 +158,7 @@ public class blotto {
                                                 }
                                             }
                                             System.out.print("]");*/
+                                            // no need to have counter
                                             counter++;
                                             total = total + q;
                                         }
@@ -169,6 +181,7 @@ public class blotto {
         return team1Score;
     }
 
+    // return int instead, 2 points for win, 1 for draw 
     public static double getPoints (int[] team1, int[] team2) {
         double points1 = 0;
         double points2 = 0;
@@ -184,6 +197,7 @@ public class blotto {
         }
         double pointsGained = 0;
         if (points1 > points2) {
+            // can return 1 directly here, no need to have pointsGained variable
             pointsGained = 1;
         } else if (points1 == points2) {
             pointsGained = 0.5;
